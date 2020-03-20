@@ -95,7 +95,8 @@ public final class InnerHitBuilder extends ToXContentToBytes implements Writeabl
                 SearchSourceBuilder.HIGHLIGHT_FIELD);
     }
 
-    private String name;
+    private String
+        name;
     private boolean ignoreUnmapped;
 
     private int from;
