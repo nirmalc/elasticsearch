@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class FamilySearchExt extends SearchExtBuilder {
-    public static String NAME = "all_children";
+    public static String NAME = "groupby_family";
 
     public FamilySearchExt() {
     }

@@ -54,6 +54,7 @@ import org.elasticsearch.index.query.QueryShardContext;
 import org.elasticsearch.index.query.QueryShardException;
 import org.elasticsearch.join.mapper.ParentIdFieldMapper;
 import org.elasticsearch.join.mapper.ParentJoinFieldMapper;
+import org.elasticsearch.search.fetch.subphase.FetchSourceContext;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -541,13 +542,13 @@ public class FamilyQueryBuilder extends AbstractQueryBuilder<FamilyQueryBuilder>
             InnerHitContextBuilder innerHitContextBuilder =
                 new ParentChildInnerHitContextBuilderExt(type, true, query, innerHitBuilder, children);
             innerHits.put(name, innerHitContextBuilder);
-            InnerHitBuilder properHitsInnerHitBuilder = new InnerHitBuilder("proper_hits");
+            InnerHitBuilder properHitsInnerHitBuilder = new InnerHitBuilder("family");
             properHitsInnerHitBuilder.setSize(innerHitBuilder.getSize());
             properHitsInnerHitBuilder.setSorts(innerHitBuilder.getSorts());
             properHitsInnerHitBuilder.setFetchSourceContext(innerHitBuilder.getFetchSourceContext());
             InnerHitContextBuilder properHitsInnerHitContextBuilder  =
                 new ParentChildInnerHitContextBuilderExt(type, true, query, properHitsInnerHitBuilder, children);
-            innerHits.put("proper_hits", properHitsInnerHitContextBuilder);
+            innerHits.put("all_children", properHitsInnerHitContextBuilder);
         }
     }
 }
